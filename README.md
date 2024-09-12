@@ -2,6 +2,6 @@
 
 Draw on it!
 
-Live: 
+Live: https://zippy0626.github.io/etch-a-sketch/
 
 (From The Odin Project)
