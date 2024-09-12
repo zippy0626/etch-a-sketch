@@ -11,15 +11,16 @@ function findSquaresForWH(width, height, squarePixels) {
     let heightInSquares = height/ squarePixels
     let totalAreaInSquares = widthInSquares * heightInSquares
 
-    console.log(
-        `For a ${squarePixels}px by ${squarePixels}px square:\n`,
-        `Width in squares: ${widthInSquares}\n`,
-        `Height in squares: ${heightInSquares}\n`, 
-        `Total Area in squares: ${totalAreaInSquares}`, 
-    )
-
+    // console.log(
+    //     `For a ${squarePixels}px by ${squarePixels}px square:\n`,
+    //     `Width in squares: ${widthInSquares}\n`,
+    //     `Height in squares: ${heightInSquares}\n`, 
+    //     `Total Area in squares: ${totalAreaInSquares}`, 
+    // )
     return [widthInSquares, heightInSquares, totalAreaInSquares]
 }
+
+
 
 // Chose size of square
 let pixels = 25
@@ -43,7 +44,9 @@ function makeSquares(pixels) {
             square.style.margin = "0";
         }
         squaresContainer.appendChild(square)
-    }; 
+    };
+    
+    updateEventListener()
 }
 makeSquares(pixels)
 
@@ -58,17 +61,36 @@ function updateEventListener() {
         // One Click
         square.addEventListener('mousedown', () => {
             mouseDown = true;
-            square.style.backgroundColor = 'black';
+            
+            // Rainbow
+            if (mouseDown && isRGB) {
+                getRGB()
+                let [one, two, three] = getRGB()
+                square.style.backgroundColor = `rgb(${one}, ${two}, ${three})`
+                return;
+            } else {
+                square.style.backgroundColor = 'black';
+                return;
+            };
         });
         // Click and Hold
         square.addEventListener('mouseover', () => {
-            if (mouseDown) { 
+            if (mouseDown && !isRGB) { 
                 square.style.backgroundColor = 'black';
+                return;
+            }
+            // Rainbow Mode
+            if (mouseDown && isRGB) {
+                getRGB()
+                let [one, two, three] = getRGB()
+                square.style.backgroundColor = `rgb(${one}, ${two}, ${three})`
+                return;
             }
         });
         // Stop
         square.addEventListener('mouseup', () => {
             mouseDown = false;
+            return;
         });
     });
 }
@@ -111,5 +133,27 @@ resizeButton.addEventListener('click', () => {
 
 // Change Color
 
-// Rainbow Color
 
+
+// Rainbow Color
+function getRandomArbitrary(min, max) {
+    return Math.ceil(Math.random() * (max - min) + min);
+}
+
+function getRGB() {
+    let [one, two, three] = [getRandomArbitrary(0,256), getRandomArbitrary(0,256), getRandomArbitrary(0,256)]
+
+    return [one, two, three]
+}
+
+let isRGB = false;
+
+const egg = document.querySelector('.egg');
+egg.addEventListener('click', () => {
+    isRGB = true;
+});
+
+const logo = document.querySelector('.logo');
+logo.addEventListener('click', () => {
+    isRGB = false;
+});

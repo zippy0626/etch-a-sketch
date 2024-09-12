@@ -15,10 +15,11 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #faf7fa;
+    overflow: hidden;
 }
 
 .container {
-    height: 95vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,6 +28,7 @@ body {
     box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.51),
     -2px -2px 5px 0px rgba(0, 0, 0, 0.49);
     border-radius: 10px;
+    border: #d50b0b 2px solid;
 }
 
 .logo {
@@ -37,9 +39,15 @@ body {
     align-items: center;
     color: #f8e2b0;
     user-select: none;
+    cursor: pointer;
 }
 
 .heading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 70px;
     padding: 10px;
     border-radius: 3px;
     box-shadow: 
@@ -49,7 +57,8 @@ body {
 
 .screen {
     display: flex;
-    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     width: 700px;
     height: 475px;
     background-color: #e1e3e2;
@@ -57,15 +66,24 @@ body {
     box-shadow: 
     inset 2px 2px 8px 0px rgba(0,0,0,0.75),
     inset -2px -2px 8px 0px rgba(0,0,0,0.75);
-    border: #a60f0f 2px solid;
+    border: #d50b0b 2px solid;
+}
+
+.squares-container {
+    width: 675px;
+    height: 450px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow: hidden; 
+    /* add overflow hidden */
 }
 
 .square {
-    width: 16px;
-    height: 16px;
-    border: .5px black solid;
-    margin: 0;
-    padding: 0;
+    transition: all 100ms ease;
+    user-select: none; 
+    /* this is important, user select */
+    cursor: pointer;
 }
 
 .bottom-buttons {
@@ -89,4 +107,23 @@ button {
     cursor: pointer;
     box-shadow: 2px 2px 5px 0px rgba(157, 35, 35, 0.75),
     -2px -2px 5px 0px rgba(162, 37, 37, 0.75);
+    user-select: none;
+    font-family: monospace;
+    font-size: 12px;
+}
+
+.egg-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.egg {
+    position: absolute;
+    width: 50px;
+    top: 98.5vh;
+}
+
+.egg:hover {
+    transform: rotate(15deg);
 }
